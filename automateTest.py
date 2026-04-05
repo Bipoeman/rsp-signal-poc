@@ -85,8 +85,8 @@ def right_time_div_ext_freq(channel: str, freq: float):
 ###################### Buzzer Off before measurement ######################
 ## BUZZ ON / OFF
 
-freqArr = cal_freq_range(1000, 10000, 200)
-fileName = 'lrFilter1'
+freqArr = cal_freq_range(1000, 10000000, 200)
+fileName = 'lrFilter6'
 
 with open(f'./EasyEQ test results/{fileName}.csv', 'w') as f:
     f.write('Frequency,Gain,Phase\n')
@@ -98,7 +98,7 @@ for freq in freqArr:
     right_vdiv_for_pkpk("C1")
     right_vdiv_for_pkpk("C2")
     print(np.exp(freq * -0.05), end=" ")
-    time.sleep(np.exp(freq * -0.05))
+    time.sleep(0.1)
     vin = instrument_interface.get_pkpk(scope, "C1")
     vout = instrument_interface.get_pkpk(scope, "C2")
     phase = instrument_interface.get_phase(scope)
